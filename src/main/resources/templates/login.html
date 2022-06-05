@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org"
+      layout:decorate="~{fragments/layout}">
+<head>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <title>Login</title>
+</head>
+<body style="margin-top: 150px;margin-left: 550px;margin-right: 550px">
+<form th:action="@{/login}" method="post">
+    <div th:if="${param.error}">
+        <div class="alert alert-danger">
+            Invalid username or password.
+        </div>
+    </div>
+
+    <div th:if="${param.loginError}">
+        <div class="alert alert-danger">
+            Wrong Security Answer.
+        </div>
+    </div>
+
+    <div th:if="${param.logout}">
+        <div class="alert alert-info">
+            You have been logged out.
+        </div>
+    </div>
+    <div class="form-outline mb-4">
+        <label class="form-label" for="email">Email address</label>
+        <input type="email" id="email" name="email" class="form-control" />
+    </div>
+
+    <div class="form-outline mb-4">
+        <label class="form-label" for="password">Password</label>
+        <input type="password" id="password" name="password" class="form-control" />
+    </div>
+
+    <div class="form-outline mb-4">
+        <label class="form-label" for="securityAnswer">Please Answer For Security<br>
+            What is your nick name</label>
+        <input type="text" id="securityAnswer" name="securityAnswer" class="form-control" />
+    </div>
+
+    <button type="submit" class="btn btn-primary btn-block mb-4">Log in</button>
+
+
+</form>
+<div class="container-fluid">
+<div style="font-weight: bold" class="justify-content-center" >Or</div>
+<button th:onclick="|window.location.href='/getsignup'|" type="button" class="btn btn-primary btn-block mb-4">Sign Up</button>
+</div>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org"
+      layout:decorate="~{fragments/layout}">
+<head>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <title>Login</title>
+</head>
+<body style="margin-top: 150px;margin-left: 550px;margin-right: 550px">
+<form th:action="@{/postsignup}" th:object="${myUser}" method="POST" enctype="utf8">
+
+    <div th:if="${#request.getParameter('UserAlreadyExists')}">
+        <div class="alert alert-danger">
+            <span class="alert alert-danger" th:text="${#request.getParameter('UserAlreadyExists')}">Error</span>
+
+        </div>
+    </div>
+    <div class="form-outline mb-4">
+        <label class="form-label" >Email address</label>
+        <input type="email" th:field="*{email}"  class="form-control" />
+    </div>
+
+
+
+    <div class="form-outline mb-4">
+        <label  class="form-label">Choose a Role:</label>
+        <select type="text" th:field="*{role}" class="form-control" >
+            <option th:value="superAdmin">SuperAdmin</option>
+            <option value="admin">Admin</option>
+            <option value="user">User</option>
+        </select>
+    </div>
+
+    <div class="form-outline mb-4">
+        <label class="form-label" >Password</label>
+        <input type="password" th:field="*{password}"  class="form-control" />
+    </div>
+
+    <div class="form-outline mb-4">
+        <label class="form-label" >Security Question : <br>What is your nick name</label>
+        <input type="text" th:field="*{securityAnswer}"  class="form-control" />
+    </div>
+
+
+    <button type="submit" class="btn btn-primary btn-block mb-4">Sign up</button>
+
+</form>
+<div class="container-fluid">
+<div style="font-weight: bold" class="justify-content-center" >Or</div>
+<button th:onclick="|window.location.href='/login'|" type="button" class="btn btn-primary btn-block mb-4">Log In</button>
+</div>
+</body>
+</html>

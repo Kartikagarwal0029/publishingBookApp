@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org"
+      layout:decorate="~{fragments/layout}">
+<head>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <title>Login</title>
+</head>
+<body>
+<div style="margin-top: 50px;margin-left: 250px;margin-right: 250px">
+    <h1 th:text=" 'Hello, Welcome '+ ${user} +' !' ">Hello</h1>
+</div>
+<div th:if="${editArticle=='No'}">
+    <div style="margin-top: 20px;margin-left: 250px;margin-right: 250px">
+        <form th:action="@{/draftAdmin/edit}" th:object="${draft}" method="POST" enctype="utf8">
+
+            <div class="form-group">
+                <label for="blog">Write Article:</label>
+                <textarea class="form-control" rows="5" id="blog" th:field="*{blog}" th:text="${blog.getBlog()}" type="text"></textarea>
+            </div>
+            <input type="hidden" th:field="*{id}" id="id" name="id" th:value="${blog.getId()}">
+
+            <button type="submit" class="btn btn-primary btn-block mb-4">Save</button>
+        </form>
+    </div>
+</div>
+<div th:if="${editArticle=='yes'}">
+    <div style="margin-top: 20px;margin-left: 250px;margin-right: 250px">
+        <form th:action="@{/article/edit}" th:object="${article}" method="POST" enctype="utf8">
+
+            <div class="form-group">
+                <label for="blog">Write Article:</label>
+                <textarea class="form-control" rows="5" id="bloggg" th:field="*{blog}" th:text="${article.getBlog()}" type="text"></textarea>
+            </div>
+            <input type="hidden" th:field="*{id}" id="iddd" name="id" th:value="${article.getId()}">
+
+            <button type="submit" class="btn btn-primary btn-block mb-4">Save</button>
+        </form>
+    </div>
+</div>
+<br><br>
+<div class="container-fluid">
+<div style="font-weight: bold" class="justify-content-center" >Or</div>
+
+<button th:onclick="|window.location.href='/home'|" type="button" class="btn btn-primary mb-4">Return to Home Page</button>
+</div>
+</body>
+</html>

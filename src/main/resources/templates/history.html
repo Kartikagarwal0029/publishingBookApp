@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org"
+      layout:decorate="~{fragments/layout}">
+<head>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <title>Login</title>
+</head>
+<body>
+<table class="table table-striped table-bordered container-fluid"  >
+    <thead class="thead-dark">
+    <tr>
+        <th>Article</th>
+        <th>Author / Reviewer</th>
+        <th>Publish Date</th>
+    </tr>
+    </thead>
+    <tbody>
+    <div th:if="${#lists.isEmpty(history)}">
+        <tr>
+            <td>
+                NA
+            </td>
+            <td>
+                NA
+            </td>
+            <td>NA</td>
+        </tr>
+    </div>
+    <div th:unless="${#lists.isEmpty(history)}">
+        <tr th:each="draft: ${history}">
+            <td th:text="${draft.blog}">Null</td>
+            <td th:text="${draft.getUser().getEmail()}">Null</td>
+            <td th:text="${draft.getLocalDate()}">Null</td>
+        </tr>
+    </div>
+    </tbody>
+</table>
+<button style="margin-top: 50px" th:onclick="|window.location.href='/home'|" type="button" class="btn btn-primary mb-4">Return to Home Page</button>
+
+</body>
+</html>
