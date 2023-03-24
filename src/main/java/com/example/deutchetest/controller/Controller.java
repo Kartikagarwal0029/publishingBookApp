@@ -24,6 +24,8 @@ import java.util.List;
 @org.springframework.stereotype.Controller
 public class Controller {
 
+
+
     @Autowired
     private ArticleService articleService;
 
